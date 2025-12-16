@@ -20,7 +20,7 @@ why_not_scheduled(EventId, P1, P2, Explanation) :-
     ;   fallback_reason(EventId, P1, P2, Explanation)
     ).
 
-% Case 1: they are scheduled
+% --- case 1: they ARE scheduled ---
 
 already_scheduled(EventId, P1, P2, Explanation) :-
     (   models:meeting(MId, EventId, P1, P2, SlotId, Status)
@@ -37,7 +37,7 @@ already_scheduled(EventId, P1, P2, Explanation) :-
            "They are already scheduled in event ~w: meeting ~w at slot ~w (~w) between ~w (~w) and ~w (~w).",
            [EventId, MId, SlotId, SlotLabel, Name1, Org1, Name2, Org2]).
 
-% Case 2 hard blocks
+% --- case 2: hard blocks ---
 
 blocked_reason(P1, P2, Explanation) :-
     constraints:blocked_pair(P1, P2),
@@ -47,7 +47,7 @@ blocked_reason(P1, P2, Explanation) :-
            "They are not scheduled because this pair is explicitly blocked by your constraints (~w / ~w vs ~w / ~w).",
            [Name1, Org1, Name2, Org2]).
 
-% case 3non-positive match score
+% --- case 3: non-positive match score ---
 
 bad_match_reason(P1, P2, Explanation) :-
     match:match_score(P1, P2, Score),
@@ -58,7 +58,7 @@ bad_match_reason(P1, P2, Explanation) :-
            "They are not scheduled because their structural match score is ~w (≤ 0), so they are not considered a good fit (~w / ~w vs ~w / ~w).",
            [Score, Name1, Org1, Name2, Org2]).
 
-% case 4 no shared free slot
+% --- case 4: no shared free slot ---
 
 no_free_slot_reason(EventId, P1, P2, Explanation) :-
     findall(SlotId-Label,
@@ -112,7 +112,7 @@ conflicts_text(Conflicts, Text) :-
             Lines),
     atomic_list_concat(Lines, "\n", Text).
 
-% Case 5 dfault explanation 
+% --- case 5: default explanation ---
 
 fallback_reason(EventId, P1, P2, Explanation) :-
     models:participant(P1, Name1, _, Org1),

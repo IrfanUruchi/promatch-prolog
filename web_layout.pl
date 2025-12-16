@@ -423,7 +423,7 @@ body {
   background: rgba(17,24,39,0.9);
 }
 
-% Misc
+/* Misc */
 
 .muted {
   color: var(--text-muted);
@@ -449,7 +449,7 @@ body {
   margin-right: 2px;
 }
 
-% Status labels
+/* Status labels */
 
 .status-label {
   font-size: 12px;
@@ -537,7 +537,9 @@ textarea {
 }
     ')).
 
+% ---------------------------------------------------
 % App shell
+% ---------------------------------------------------
 
 app_shell(ActiveSection, Inner) -->
     base_style,

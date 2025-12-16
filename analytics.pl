@@ -34,7 +34,7 @@ event_stats(EventId, Stats) :-
         avg_meetings: AvgM
     }.
 
-% Internals
+% -------- internals --------
 
 active_meeting(meeting(_Id, _EventId, _P1, _P2, _Slot, Status)) :-
     Status \= cancelled.

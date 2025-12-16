@@ -1,0 +1,17 @@
+services:
+  promatch:
+    container_name: promatch
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - CEREBRAS_API_KEY
+      - CEREBRAS_MODEL
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:3000/ >/dev/null || exit 1"]
+      interval: 10s
+      timeout: 3s
+      retries: 10

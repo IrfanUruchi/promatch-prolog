@@ -35,7 +35,7 @@ schedule_lines(EventId,
     schedule_lines(EventId, Rest, Ls).
 
 
-% Stable matching explanation
+/* --------- Stable matching explanation ---------- */
 
 explain_stable(EventId, Matches, Text) :-
     event(EventId, Name, Date, Loc),
